@@ -1,10 +1,15 @@
-import os, requests, json
+import requests, json
+
+try:
+    from .. import config  # our local config file
+except ImportError:
+    config = None
 
 def rewrite_tips_with_granite(actions: list[str], lang: str = "en") -> list[str] | None:
-    url = os.getenv("IBM_WX_URL")
-    api_key = os.getenv("IBM_WX_API_KEY")
-    project_id = os.getenv("IBM_WX_PROJECT_ID")
-    model_id = os.getenv("IBM_WX_MODEL_ID", "ibm/granite-13b-instruct")
+    url       = getattr(config, "IBM_WX_URL", None)
+    api_key   = getattr(config, "IBM_WX_API_KEY", None)
+    project_id = getattr(config, "IBM_WX_PROJECT_ID", None)
+    model_id   = getattr(config, "IBM_WX_MODEL_ID", "ibm/granite-13b-instruct")
 
     if not (url and api_key and project_id):
         return None  # fallback if not configured
@@ -28,10 +33,7 @@ def rewrite_tips_with_granite(actions: list[str], lang: str = "en") -> list[str]
                 {"role": "user", "content": user_prompt}
             ],
             "project_id": project_id,
-            "parameters": {
-                "decoding_method": "greedy",
-                "max_new_tokens": 120
-            }
+            "parameters": {"decoding_method": "greedy", "max_new_tokens": 120}
         }
         r = requests.post(f"{url}/ml/v1/text/generation?version=2023-05-29",
                           headers=headers, data=json.dumps(payload), timeout=15)

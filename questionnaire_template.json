@@ -1,0 +1,15 @@
+{
+  "name": "Patient Name",
+  "age": 45,
+  "gender": "male",
+  "height": 175.0,
+  "weight": 80.0,
+  "bp_sys": 140,
+  "bp_dia": 90,
+  "history_high_glucose": false,
+  "physical_activity_hours_per_week": 3.0,
+  "family_history_diabetes": "none",
+  "smoking_status": "never",
+  "alcohol_status": "moderate",
+  "lang": "en"
+}

@@ -1,0 +1,15 @@
+{
+  "name": "Sarah Johnson",
+  "age": 52,
+  "gender": "female",
+  "height": 165.0,
+  "weight": 78.0,
+  "bp_sys": 148,
+  "bp_dia": 92,
+  "history_high_glucose": true,
+  "physical_activity_hours_per_week": 2.0,
+  "family_history_diabetes": "first_degree",
+  "smoking_status": "former",
+  "alcohol_status": "moderate",
+  "lang": "en"
+}

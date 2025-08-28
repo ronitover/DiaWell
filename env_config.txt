@@ -1,4 +1,0 @@
-IBM_WX_URL=https://au-syd.ml.cloud.ibm.com
-IBM_WX_API_KEY=mLEmjUqsfgS9qK-SphvkSrNS90pUvfFnf7g8tRAA0535
-IBM_WX_PROJECT_ID=57bf082e-c759-4b7f-803f-1d92ea56dd3a
-IBM_WX_MODEL_ID=ibm/granite-13b-instruct

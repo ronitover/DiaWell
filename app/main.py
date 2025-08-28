@@ -12,25 +12,36 @@ logger = logging.getLogger(__name__)
 
 # Create FastAPI app
 app = FastAPI(
-    title="Diabetes Risk Assessment API",
-    description="API for assessing diabetes risk based on patient questionnaire data",
-    version="1.0.0"
+    title="DiaWell - Diabetes Risk Assessment API",
+    description="AI-powered diabetes risk assessment with personalized health recommendations",
+    version="1.0.0",
+    docs_url="/docs",
+    redoc_url="/redoc"
 )
 
-# Add CORS middleware
+# Add CORS middleware for Flutter integration
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # In production, specify actual origins
+    allow_origins=["*"],  # Configure specific origins for production
     allow_credentials=True,
-    allow_methods=["*"],
+    allow_methods=["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allow_headers=["*"],
 )
 
 
 @app.get("/")
-async def ping():
-    """Health check endpoint"""
-    return {"message": "Diabetes Risk Assessment API is running!", "status": "healthy"}
+async def health_check():
+    """Health check endpoint for Flutter app"""
+    return {
+        "status": "healthy",
+        "message": "DiaWell API is running!",
+        "version": "1.0.0",
+        "endpoints": {
+            "risk_assessment": "/risk/submit",
+            "recommendations": "/recommendations/generate",
+            "docs": "/docs"
+        }
+    }
 
 
 def pick_tips(level: str, flags: list[str]) -> dict:
@@ -59,7 +70,7 @@ def pick_tips(level: str, flags: list[str]) -> dict:
 @app.post("/risk/submit", response_model=RiskResponse)
 async def submit_risk_assessment(patient_data: RiskInput):
     """
-    Submit patient questionnaire data for comprehensive diabetes risk assessment and health recommendations.
+    Submit patient questionnaire data for comprehensive diabetes risk assessment.
     
     This endpoint calculates a risk score based on various health factors including:
     - Age, height, weight (BMI auto-calculated)

@@ -15,9 +15,11 @@ This project follows a **microservices architecture** where different components
 - **Risk Scoring**: Calculates diabetes risk score (0-100) based on multiple health factors
 - **Comprehensive Assessment**: Considers age, BMI, blood pressure, medical history, lifestyle factors, and family history
 - **Personalized Recommendations**: Generates health recommendations based on WHO, CDC, and ICMR guidelines
+- **AI Enhancement**: Optional Granite AI integration for empathetic, age-appropriate health tips
+- **Flutter Ready**: Optimized for Flutter mobile app integration with complete client examples
 - **RESTful API**: Clean REST endpoints with automatic documentation
-- **Input Validation**: Robust Pydantic models with field validation
-- **CORS Enabled**: Ready for frontend integration
+- **Input Validation**: Robust Pydantic models with field validation and examples
+- **CORS Enabled**: Ready for cross-platform frontend integration
 - **Medical Guidelines**: Evidence-based recommendations from leading health organizations
 - **Comprehensive Testing**: Full test suite with coverage reporting
 - **CI/CD Ready**: GitHub Actions workflow for automated testing
@@ -95,11 +97,17 @@ This project follows a **microservices architecture** where different components
 
 ## 📋 API Endpoints
 
-- `GET /` - Health check endpoint
+- `GET /` - Health check endpoint with API information
 - `POST /risk/submit` - Submit patient data for comprehensive risk assessment and recommendations
 - `POST /recommendations/generate` - Generate health recommendations based on risk data
 - `GET /docs` - Interactive API documentation (Swagger UI)
 - `GET /redoc` - Alternative API documentation
+
+## 📱 Flutter Integration
+
+Ready-to-use Flutter integration files:
+- `flutter_api_client.dart` - Complete API client for Flutter
+- `FLUTTER_INTEGRATION.md` - Comprehensive integration guide with full widget example
 
 ## 📝 Sample Request
 
