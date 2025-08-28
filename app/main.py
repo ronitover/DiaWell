@@ -3,6 +3,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from .models import RiskInput, RiskResponse, RecoInput
 from .services.risk_scoring import calculate_risk
 from .services.recommendations import generate_health_recommendations
+from .services.granite import rewrite_tips_with_granite
 import logging
 
 # Configure logging
@@ -32,6 +33,29 @@ async def ping():
     return {"message": "Diabetes Risk Assessment API is running!", "status": "healthy"}
 
 
+def pick_tips(level: str, flags: list[str]) -> dict:
+    """Pick appropriate tips based on risk level and flags."""
+    # Get base recommendations
+    health_recommendations = generate_health_recommendations(
+        risk_level=level,
+        flags=flags,
+        risk_score=0  # We don't need the score for tips selection
+    )
+    
+    # Build tips_block with flat structure
+    tips_block = {
+        "headline": health_recommendations["headline"],
+        "actions": health_recommendations["recommendations"]["lifestyle"] + health_recommendations["recommendations"]["specific_actions"],
+        "disclaimer": health_recommendations["disclaimer"]
+    }
+    
+    # Add red_flags only for High risk
+    if level == "High":
+        tips_block["red_flags"] = health_recommendations["red_flags"]
+    
+    return tips_block
+
+
 @app.post("/risk/submit", response_model=RiskResponse)
 async def submit_risk_assessment(patient_data: RiskInput):
     """
@@ -57,30 +81,20 @@ async def submit_risk_assessment(patient_data: RiskInput):
         # Calculate risk score, level, and flags
         risk_score, risk_level, flags = calculate_risk(patient_data)
         
-        # Generate personalized health recommendations
-        health_recommendations = generate_health_recommendations(
-            risk_level=risk_level,
-            flags=flags,
-            risk_score=risk_score
-        )
+        # Pick tips based on risk level and flags
+        tips_block = pick_tips(risk_level, flags)
         
-        # Build tips_block with flat structure
-        tips_block = {
-            "headline": health_recommendations["headline"],
-            "actions": health_recommendations["recommendations"]["lifestyle"] + health_recommendations["recommendations"]["specific_actions"],
-            "disclaimer": health_recommendations["disclaimer"]
-        }
-        
-        # Add red_flags only for High risk
-        if risk_level == "High":
-            tips_block["red_flags"] = health_recommendations["red_flags"]
+        # 🔹 AI rewrite step (Granite)
+        rewritten = rewrite_tips_with_granite(tips_block["actions"], lang=patient_data.lang or "en")
+        if rewritten:
+            tips_block["actions"] = rewritten
         
         # Create comprehensive response with risk assessment and recommendations
         response = RiskResponse(
             risk_score=risk_score,
             risk_level=risk_level,
             flags=flags,
-            guideline=health_recommendations["headline"],
+            guideline=tips_block["headline"],
             tips=tips_block
         )
         

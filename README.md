@@ -42,7 +42,18 @@ This project follows a **microservices architecture** where different components
    pip install -r requirements.txt
    ```
 
-3. **Run the application (Multiple Options):**
+3. **Set up environment variables (Optional - for Granite AI enhancement):**
+   ```bash
+   # Copy the example environment file
+   cp env.example .env
+   
+   # Edit .env file with your IBM WatsonX credentials
+   # Get your credentials from: https://cloud.ibm.com/apis/watsonx
+   ```
+   
+   **Note**: The API works without Granite AI configuration. If not configured, it will use the original health tips.
+
+4. **Run the application (Multiple Options):**
 
    **Option 1: Using the start script (Recommended)**
    ```bash
@@ -59,7 +70,7 @@ This project follows a **microservices architecture** where different components
    python run.py
    ```
 
-4. **Access the API:**
+5. **Access the API:**
    - Health check: http://localhost:8000/
    - API docs: http://localhost:8000/docs
    - Alternative docs: http://localhost:8000/redoc
