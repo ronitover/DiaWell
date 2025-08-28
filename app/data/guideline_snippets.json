@@ -1,0 +1,62 @@
+{
+  "base_tips": {
+    "Low": [
+      "Maintain a healthy body weight.",
+      "Stay physically active: aim for at least 150 minutes of moderate exercise per week.",
+      "Eat a balanced diet rich in fruits, vegetables, and whole grains.",
+      "Limit intake of sugar and saturated fats.",
+      "Do not smoke tobacco.",
+      "Manage stress and get enough sleep.",
+      "Drink water instead of sugary drinks."
+    ],
+    "Medium": [
+      "Monitor your blood glucose and blood pressure regularly.",
+      "Increase physical activity and reduce sedentary time.",
+      "Choose healthy foods and control portion sizes.",
+      "Limit alcohol consumption.",
+      "Seek advice from a healthcare provider for risk management.",
+      "Take medications as prescribed.",
+      "Follow up with regular checkups."
+    ],
+    "High": [
+      "Consult a healthcare professional for personalized diabetes prevention advice.",
+      "Follow a structured plan for diet, exercise, and regular screening.",
+      "Take steps to manage blood pressure and cholesterol.",
+      "Be vigilant for symptoms and complications.",
+      "Adhere to medical recommendations and follow-up appointments.",
+      "Monitor and control blood glucose levels closely."
+    ]
+  },
+  "factor_tips": {
+    "age_high": "Regular health checkups become more important as you age.",
+    "bmi_high": "Work towards a healthy weight through balanced diet and regular exercise.",
+    "high_glucose_history": "Monitor your blood glucose regularly and keep records.",
+    "bp_high": "Monitor and manage your blood pressure with lifestyle changes and medical advice.",
+    "low_physical_activity": "Increase daily physical activity; even small changes help.",
+    "family_history_second_degree": "Discuss your family history with your doctor for tailored prevention strategies.",
+    "family_history_first_degree": "Discuss your family history with your doctor for tailored prevention strategies.",
+    "smoking_risk": "Quitting tobacco greatly reduces diabetes risk.",
+    "smoking_high_risk": "Quitting tobacco greatly reduces diabetes risk.",
+    "alcohol_risk": "Limit alcohol intake to reduce risk of diabetes and complications.",
+    "alcohol_high_risk": "Limit alcohol intake to reduce risk of diabetes and complications."
+  },
+  "disclaimer": "Educational only, not medical advice.",
+  "red_flags": "If chest pain, severe breathlessness, confusion, or weakness → seek urgent care.",
+  "credits": [
+    {
+      "organization": "World Health Organization (WHO)",
+      "contribution": "Global diabetes prevention and lifestyle guidelines",
+      "link": "https://www.who.int/news-room/fact-sheets/detail/diabetes"
+    },
+    {
+      "organization": "Centers for Disease Control and Prevention (CDC)",
+      "contribution": "Diabetes self-management tips",
+      "link": "https://www.cdc.gov/diabetes/living/index.html"
+    },
+    {
+      "organization": "Indian Council of Medical Research (ICMR)",
+      "contribution": "India diabetes guidelines",
+      "link": "https://www.icmr.nic.in/sites/default/files/guidelines/diabetes_guidelines_2022.pdf"
+    }
+  ]
+}
